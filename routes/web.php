@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\PagesController;
+use \App\Http\Controllers\SaleController;
 
 
 /*
@@ -15,11 +16,12 @@ use \App\Http\Controllers\PagesController;
 |
 */
 
-Route::group(['prefix' => '/'] , function(){
+// Route::group(['prefix' => '/'] , function(){
     // Route::resource('todos', TodoController::class);
     Route::get('/', [PagesController::class, 'form']);
+    Route::resource('sales', SaleController::class);
     Route::post('/store-form', [PagesController::class, 'storeForm']);
-});
+// });
 
 
 // Route::get('/', function () {

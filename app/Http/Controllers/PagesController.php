@@ -35,7 +35,7 @@ class PagesController extends Controller
         
 
         $sale = Sale::create($responseBody);
-        dd($responseBody , request()->all() , $sale  );
+        // dd($responseBody , request()->all() , $sale  );
         return view('payment-page', compact('responseBody'));
             }
         }

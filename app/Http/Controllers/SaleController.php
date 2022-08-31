@@ -15,7 +15,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::all();
+        return view('sales.index', compact('sales'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('sales.create');
     }
 
     /**
@@ -36,7 +37,9 @@ class SaleController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
-        //
+        Sale::create($request->all());
+        return redirect()->route('sales.index')
+                        ->with('success','Sale created successfully.');
     }
 
     /**
@@ -47,7 +50,8 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        
+        return view('sales.show' , compact('sale'));
     }
 
     /**
@@ -58,7 +62,7 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
-        //
+        return view('sales.edit' , compact('sale'));
     }
 
     /**
@@ -70,7 +74,11 @@ class SaleController extends Controller
      */
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
-        //
+        
+        $sale->update($request->all());
+    
+        return redirect()->route('sales.index')
+                        ->with('success','Sale updated successfully');
     }
 
     /**
@@ -81,6 +89,11 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        {
+            $sale->delete();
+        
+            return redirect()->route('sales.index')
+                            ->with('success','Sale deleted successfully');
+        }
     }
 }
