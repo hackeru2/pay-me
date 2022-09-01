@@ -73,4 +73,21 @@ class SaleTest extends TestCase
         $this->assertTrue($resp);
         $this->assertNull(Sale::find($sale->id), 'Sale should not exist in DB');
     }
+
+
+    public function test_post_create_sale()
+    {
+        $sale = Sale::factory()->make()->toArray();
+        $this->response = $this->json(
+            'POST',
+            'sales', $sale
+        );
+        $this->response->assertStatus(302);
+        $this->assertEquals(session()->get('success') , "Sale created successfully." );
+        
+        // 
+        // $this->assertSessionHasErrors([
+        //     'application_status' => 'Application status has changed. Action not applied.'
+        // ]);
+    }
 }
