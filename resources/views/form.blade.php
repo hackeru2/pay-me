@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PAGE</title>
+    <title>Order Page</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+ 
+  @if(Session::has('errors'))
+  <div class="alert alert-danger">
+     
+      <b>Error code {{( head($errors->get('status_error_code'))  ) }}</b>
+      <hr>
+      @foreach ($errors->get('status_error_details') as $err_item)
+      <p>{{$err_item}}</p>
+      @endforeach
+      @php
+          Session::forget('errors');
+      @endphp
+  </div>
+  @endif
+
+
   <div class="container mt-4">
+
   @if(session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
@@ -22,8 +39,8 @@
 
        
        <input name="seller_payme_id" type="hidden" value="MPL14985-68544Z1G-SPV5WK2K-0WJWHC7N">
-       <input name="seller_id" type="hidden" value="MPL14985-68544Z1G-SPV5WK2K-0WJWHC7N">
-       <input name="installments" type="hidden" value="1">
+       <input name="seller_id" type="hidden" value="MPL14985-68544Z1G-SPV5WK2K-0WJWHC7N---">
+       <input name="installments" type="hidden" value="1---">
        <input name="language" type="hidden" value="en">
 
         <div class="form-group">

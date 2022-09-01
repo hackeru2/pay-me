@@ -31,6 +31,11 @@ class PagesController extends Controller
 
         $statusCode = $response->status();
         $responseBody = json_decode($response->getBody(), true);
+
+        if($responseBody['status_code'])
+        return redirect()->back()->withErrors($responseBody );
+
+         dd($responseBody , request()->all()  );
         $responseBody['description'] = request()->product_name;
         
 
