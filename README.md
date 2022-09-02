@@ -51,6 +51,7 @@ http://localhost
 ## PhpMyAdmin
 Phpmyadmin port can be changed via docker-composer.yml.
 Username and password can be changed via .env file.
+(port 8085)
 | Username | Password |
 | ------ | ------ |
 |sail    | password |
