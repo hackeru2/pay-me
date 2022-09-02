@@ -1,4 +1,4 @@
-{{-- @dd($responseBody)@enddd --}}
+ 
 <!DOCTYPE html>
 <html>
 <head>

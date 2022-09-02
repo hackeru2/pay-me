@@ -22,7 +22,13 @@ class PagesController extends Controller
         
          $responseBody = PayMe::pay();
         
-        // dd($responseBody , request()->all() , $sale  );
+         if($responseBody['status_code'])
+           return redirect()->back()->withErrors($responseBody );
+ 
+        $responseBody['description'] = request()->product_name;
+
+        $sale = Sale::create($responseBody);
+
 
         return view('payment-page', compact('responseBody'));
     }

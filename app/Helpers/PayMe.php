@@ -9,11 +9,12 @@ class PayMe
 {
     public static function pay() 
     {
-        $apiURL = "https://preprod.paymeservice.com/api/generate-sale";
+        $apiURL = env('API_URL');
         $postInput =    request()->all();
-        $postInput['seller_id'] = env('seller_id');
-        $postInput['seller_payme_id'] = env('seller_payme_id');
-        $postInput['installments'] = env('installments');
+        $postInput['seller_id'] = env('SELLER_ID');
+        $postInput['seller_payme_id'] = env('SELLER_PAYME_ID');
+        $postInput['installments'] = env('INSTALLMENTS');
+        // $postInput['sale_price'] = "invalid price";
          
         $headers = [
             'X-header' => 'value'
@@ -23,14 +24,7 @@ class PayMe
 
         $statusCode = $response->status();
         $responseBody = json_decode($response->getBody(), true);
-
-         
-        if($responseBody['status_code'])
-        return redirect()->back()->withErrors($responseBody );
- 
-        $responseBody['description'] = request()->product_name;
-
-        $sale = Sale::create($responseBody);
+        
         return $responseBody ;
     }
      

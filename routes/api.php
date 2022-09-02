@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Sale;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,7 +24,13 @@ Route::middleware('api')->post('/pay-me', function (Request $request) {
     //     "installments":"1",  
     //     "language": "en"  
     //     }
-    return PayMe::pay();
+    $responseBody = PayMe::pay();
+    $responseBody['description'] = request()->product_name;
+
+    if(!$responseBody['status_code'])     
+        $responseBody['sale_id'] = Sale::create($responseBody)->id;
+
+    return $responseBody;
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
