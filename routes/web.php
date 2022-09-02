@@ -18,7 +18,7 @@ use \App\Http\Controllers\SaleController;
 
 // Route::group(['prefix' => '/'] , function(){
     // Route::resource('todos', TodoController::class);
-    Route::get('/', [PagesController::class, 'form']);
+    Route::get('/', [PagesController::class, 'form'])->name('order');
     Route::resource('sales', SaleController::class);
     Route::post('/store-form', [PagesController::class, 'storeForm']);
 // });

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('sale_payment_method');
             $table->string('status_code');
-            $table->enum('state',['Todo','Done']);
             $table->text('description');
             $table->bigInteger('price');
             $table->string('currency');

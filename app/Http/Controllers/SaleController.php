@@ -37,6 +37,8 @@ class SaleController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
+
+        
         Sale::create($request->all());
         return redirect()->route('sales.index')
                         ->with('success','Sale created successfully.');

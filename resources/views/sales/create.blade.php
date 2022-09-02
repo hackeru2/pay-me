@@ -31,7 +31,7 @@
     <input name="payme_sale_code" type="hidden" value="{{'code'.date_default_timezone_get()}}">
     <input name="transaction_id" type="hidden" value="{{'transaction'.date_default_timezone_get()}}">
     <input name="sale_payment_method" type="hidden" value="credit-card">
-    <input name="sale_url" type="hidden" value="dummy-url">
+    <input name="sale_url" type="hidden" value="dummy-urlgit">
     <input name="status_code" type="hidden" value="1">
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

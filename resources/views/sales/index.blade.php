@@ -8,6 +8,7 @@
         </div>
         <div class="pull-right">
             <a class="btn btn-success" href="{{ route('sales.create') }}"> Create New sale</a>
+            <a class="btn btn-info" href="{{ route('order') }}"> Order Page</a>
         </div>
     </div>
 </div>

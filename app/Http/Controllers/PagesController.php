@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Sale;
+use PayMe;
 class PagesController extends Controller
 {
-    
+
     
 
     public function form()
@@ -19,28 +20,10 @@ class PagesController extends Controller
     public function storeForm()
     {
         
-        $apiURL = "https://preprod.paymeservice.com/api/generate-sale";
-        $postInput =    request()->all();
- 
-
-        $headers = [
-            'X-header' => 'value'
-        ];
-
-        $response = Http::withHeaders($headers)->post($apiURL, $postInput);
-
-        $statusCode = $response->status();
-        $responseBody = json_decode($response->getBody(), true);
-
-        if($responseBody['status_code'])
-        return redirect()->back()->withErrors($responseBody );
-
-         dd($responseBody , request()->all()  );
-        $responseBody['description'] = request()->product_name;
+         $responseBody = PayMe::pay();
         
-
-        $sale = Sale::create($responseBody);
         // dd($responseBody , request()->all() , $sale  );
+
         return view('payment-page', compact('responseBody'));
-            }
-        }
+    }
+}

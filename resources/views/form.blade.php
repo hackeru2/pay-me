@@ -14,6 +14,7 @@
       <hr>
       @foreach ($errors->get('status_error_details') as $err_item)
       <p>{{$err_item}}</p>
+      <p>Additional details : {{implode(',' , $errors->get('status_additional_info') )  }} </p>
       @endforeach
       @php
           Session::forget('errors');
@@ -21,9 +22,11 @@
   </div>
   @endif
 
-
+  <div class="pull-right">
+    <a class="btn btn-info" href="{{ route('sales.index') }}"> Sales Page</a>
+</div>
   <div class="container mt-4">
-
+    
   @if(session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
@@ -31,16 +34,12 @@
   @endif
   <div class="card">
     <div class="card-header text-center font-weight-bold">
-      Laravel 8 - Add Blog Post Form Example
+      Create A sale
     </div>
     <div class="card-body">
       <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('store-form')}}">
        @csrf
-
        
-       <input name="seller_payme_id" type="hidden" value="MPL14985-68544Z1G-SPV5WK2K-0WJWHC7N">
-       <input name="seller_id" type="hidden" value="MPL14985-68544Z1G-SPV5WK2K-0WJWHC7N---">
-       <input name="installments" type="hidden" value="1---">
        <input name="language" type="hidden" value="en">
 
         <div class="form-group">
